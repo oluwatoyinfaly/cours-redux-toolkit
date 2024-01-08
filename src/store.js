@@ -28,6 +28,11 @@ const todoSlice = createSlice({
         deleteTodo: (state, action) => {
             // {type: 'todos/deleteTodo', payload: 123}
             return state.filter(todo => todo.id !== action.payload)
+        },
+        editTodo: (state, action) => {
+            // {type: 'todos/editTodo', payload: {id: 123, text: 'New Text'}}
+            const todo = state.find(todo => todo.id === action.payload.id)
+            todo.text = action.payload.text
         }
     }
 });
@@ -38,4 +43,4 @@ export const store = configureStore({
     }
 })
 
-export const { addTodo, toggleComplete, deleteTodo } = todoSlice.actions
+export const { addTodo, toggleComplete, deleteTodo, editTodo } = todoSlice.actions
