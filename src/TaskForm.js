@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "./store";
 
-const TaskForm = (props) => {
+const TaskForm = () => {
   const [text, setText] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    props.addTask(text);
+    dispatch(addTodo(text))
 
     setText("");
   };

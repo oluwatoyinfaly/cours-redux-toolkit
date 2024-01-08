@@ -1,5 +1,9 @@
+import { useDispatch } from 'react-redux';
+import { toggleComplete, deleteTodo } from './store';
+
 const TaskItem = (props) => {
-  const { task, toggleTask, deleteTask } = props;
+  const { task } = props;
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -7,12 +11,12 @@ const TaskItem = (props) => {
         <input
           type="checkbox"
           checked={task.done}
-          onChange={() => toggleTask(task.id)}
+          onChange={() => dispatch(toggleComplete(task.id))}
         />
         {task.text}
 
         <span
-          onClick={() => deleteTask(task.id)}
+          onClick={() => dispatch(deleteTodo(task.id))}
           role="button"
           style={{ padding: "5px", marginLeft: "20px" }}
         >
